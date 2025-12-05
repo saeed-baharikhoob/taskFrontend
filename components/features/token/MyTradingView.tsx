@@ -72,6 +72,24 @@ const MyTradingView = ({
             },
             resolveSymbol: (symbolName, onSymbolResolvedCallback) => {
                 setTimeout(() => {
+                    let minPrice = Infinity;
+                    for (const bar of ohlcvData) {
+                        if (bar.low > 0 && bar.low < minPrice) {
+                            minPrice = bar.low;
+                        }
+                    }
+                    let priceScale = 100000000;
+
+                    if (minPrice !== Infinity && minPrice > 0) {
+                        if (minPrice >= 1) {
+                            priceScale = 10000;
+                        } else {
+                            const decimals = Math.ceil(-Math.log10(minPrice)) + 2;
+                            const maxDecimals = 16;
+                            priceScale = Math.pow(10, Math.min(decimals, maxDecimals));
+                        }
+                    }
+
                     onSymbolResolvedCallback({
                         name: symbolName,
                         description: tokenDescription,
@@ -95,7 +113,7 @@ const MyTradingView = ({
                             "W",
                             "M",
                         ] as ResolutionString[],
-                        pricescale: 100000000,
+                        pricescale: priceScale,
                         ticker: symbolName,
                         listed_exchange: "Listed exchange",
                         format: "price",
