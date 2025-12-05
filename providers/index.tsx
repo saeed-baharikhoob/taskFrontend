@@ -34,7 +34,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
               </ErrorBoundary>
             </QueryProvider>
             <Toaster />
-            {/*{isLoading && <LoadingOverlay />}*/}
+            {isLoading && <LoadingOverlay />}
           </WagmiiProvider>
         </AppWalletProvider>
       </SessionProvider>
