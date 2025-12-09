@@ -4,6 +4,8 @@ import {
     IBasicDataFeed,
     IDatafeedQuotesApi,
     ResolutionString,
+    Timezone,
+    SeriesFormat,
     widget as TradingViewWidget,
 } from "@/public/static/charting_library";
 import { IOhlcvData } from "@/types/datafeed.type";
@@ -275,7 +277,7 @@ const MyTradingView = ({
                     full_name: displayName,
                     description: description,
                     exchange: exchange,
-                    timezone: "Etc/UTC",
+                    timezone: "Etc/UTC"  as Timezone,
                     minmov: 1,
                     session: "24x7",
                     has_intraday: true,
@@ -297,7 +299,7 @@ const MyTradingView = ({
                     pricescale: priceScale,
                     ticker: symbolName,
                     listed_exchange: exchange,
-                    format: "price",
+                    format: "price" as SeriesFormat,
                     has_empty_bars: false,
                     volume_precision: 8,
                     daily_multipliers: ["1", "3", "7"],

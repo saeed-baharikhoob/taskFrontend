@@ -235,6 +235,7 @@ export default function Chart({
             theme={theme === "dark" ? "dark" : "light"}
             tokenExchange={tokenExchange}
             tokenDescription={tokenDescription}
+            network={network}
           />
         </div>
       ) : (
